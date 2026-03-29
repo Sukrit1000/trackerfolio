@@ -98,6 +98,106 @@
   color: #c9d1d9 !important;
 }
 
+/* Light DatePicker Popup */
+.light-datepicker-popup .ant-picker-dropdown {
+  background: white !important;
+  color: black !important;
+  border: 1px solid #d9d9d9 !important;
+}
+.light-datepicker-popup .ant-picker-cell-inner {
+  color: black !important;
+}
+.light-datepicker-popup .ant-picker-header {
+  color: black !important;
+  background: #f5f5f5 !important;
+  border-bottom: 1px solid #d9d9d9 !important;
+}
+.light-datepicker-popup .ant-picker-header button {
+  color: black !important;
+}
+.light-datepicker-popup .ant-picker-cell {
+  color: black !important;
+}
+.light-datepicker-popup .ant-picker-cell-in-view {
+  color: black !important;
+}
+.light-datepicker-popup .ant-picker-cell:hover {
+  background: #e6f7ff !important;
+}
+.light-datepicker-popup .ant-picker-cell-selected .ant-picker-cell-inner {
+  background: #1890ff !important;
+  color: white !important;
+}
+.light-datepicker-popup .ant-picker-today-btn {
+  color: #1890ff !important;
+}
+
+/* Month Panel */
+.light-datepicker-popup .ant-picker-month-panel .ant-picker-cell-inner {
+  color: black !important;
+}
+.light-datepicker-popup .ant-picker-month-panel .ant-picker-cell:hover {
+  background: #e6f7ff !important;
+}
+.light-datepicker-popup .ant-picker-month-panel .ant-picker-cell-selected .ant-picker-cell-inner {
+  background: #1890ff !important;
+  color: white !important;
+}
+
+/* Ensure popup content is white */
+.light-datepicker-popup .ant-picker-panel-container {
+  background: white !important;
+}
+.light-datepicker-popup .ant-picker-content {
+  background: white !important;
+}
+
+/* Light Select Dropdown */
+.light-select-popup .ant-select-dropdown {
+  background: white !important;
+  color: black !important;
+  border: 1px solid #d9d9d9 !important;
+}
+.light-select-popup .ant-select-item {
+  color: black !important;
+}
+.light-select-popup .ant-select-item:hover {
+  background: #e6f7ff !important;
+}
+.light-select-popup .ant-select-item-option-selected {
+  background: #e6f7ff !important;
+  color: black !important;
+}
+
+/* Ensure Select input is dark */
+.ant-select-selector {
+  background-color: #1e1e2f !important;
+  color: #ffffff !important;
+  border: 1px solid #3a3a55 !important;
+}
+.ant-select-selection-placeholder {
+  color: #c9d1d9 !important;
+}
+.ant-select-selection-item {
+  color: #ffffff !important;
+}
+.ant-select-arrow {
+  color: #ffffff !important;
+}
+
+/* Ensure DatePicker input is dark */
+.ant-picker-selector {
+  background-color: #1e1e2f !important;
+  color: #ffffff !important;
+  border: 1px solid #3a3a55 !important;
+}
+.ant-picker-input input {
+  color: #ffffff !important;
+}
+.ant-picker-input input::placeholder {
+  color: #c9d1d9 !important;
+}
+
 /* 🌙 Tags */
 /* .ant-tag {
   background-color: #2a2f3a !important;

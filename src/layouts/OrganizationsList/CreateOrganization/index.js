@@ -116,13 +116,13 @@ const CreateOrganization = () => {
                     label="Start Date"
                     rules={[{ required: true }]}
                   >
-                    <DatePicker style={{ width: "100%" }} picker="month" />
+                    <DatePicker style={{ width: "100%" }} picker="month" dropdownClassName="light-datepicker-popup" />
                   </Form.Item>
                 </CCol>
 
                 <CCol md={6}>
                   <Form.Item name="endDate" label="End Date">
-                    <DatePicker style={{ width: "100%" }} picker="month" />
+                    <DatePicker style={{ width: "100%" }} picker="month" dropdownClassName="light-datepicker-popup" />
                   </Form.Item>
                 </CCol>
               </CRow>
@@ -135,7 +135,7 @@ const CreateOrganization = () => {
                     label="Status"
                     rules={[{ required: true }]}
                   >
-                    <Select placeholder="Select status"
+                    <Select placeholder="Select status" dropdownClassName="light-select-popup"
                     >
                       <Option value="Completed">Completed</Option>
                       <Option value="In Progress">In Progress</Option>
@@ -202,6 +202,7 @@ const CreateOrganization = () => {
             <DatePicker
               picker="year"
               style={{ width: "100%" }}
+              dropdownClassName="light-datepicker-popup"
             />
           </Form.Item>
 

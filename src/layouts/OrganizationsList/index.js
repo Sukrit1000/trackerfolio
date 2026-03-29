@@ -109,13 +109,14 @@ const OrganizationsList = () => {
           <div className="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center mb-3">
           <h4 style={{ margin: 0 }}>My Organizations</h4>
 
-          <CButton color="primary" onClick={handleAddProject}>
+          <CButton className="mt-3 mt-sm-0" color="primary" onClick={handleAddProject}>
             + Add Organization
           </CButton>
         </div>
 
         <CCard className="mb-4">
           <CCardHeader>
+
             <strong>Experience</strong>
           </CCardHeader>
 
@@ -223,7 +224,9 @@ const OrganizationsList = () => {
         </CCard>
       </CCol>
     </CRow>
-    </CContainer>    </motion.div>  );
+    </CContainer>    </motion.div> 
+    
+  );
 };
 
 export default OrganizationsList;

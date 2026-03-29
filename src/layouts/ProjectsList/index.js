@@ -226,7 +226,7 @@ const handleAddProject = () => {
         <CCol xs={12}>
           <div className="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center mb-3">
             <h4 style={{ margin: 0 }}>My Projects</h4>
-            <CButton className="mt-2 mt-sm-0" color="primary" onClick={handleAddProject}>
+            <CButton className="mt-3 mt-sm-0" color="primary" onClick={handleAddProject}>
               + Add Project
             </CButton>
           </div>
@@ -242,7 +242,8 @@ const handleAddProject = () => {
 
              <>
    
-    <div className="dark-table">
+    {/* Desktop Table View */}
+    <div className="dark-table d-none d-md-block">
   <Table
   columns={columns}
   dataSource={projects}
@@ -267,6 +268,35 @@ const handleAddProject = () => {
   scroll={{ x: true }}
 />
 </div>
+
+    {/* Mobile Card View */}
+    <div className="d-block d-md-none">
+      {projects.map((project) => (
+        <CCard key={project.key} className="mb-3" onClick={() => navigate(`/projects/${project.key}`, { state: project })} style={{ cursor: 'pointer' }}>
+          <CCardBody>
+            <div className="d-flex justify-content-between align-items-start mb-2">
+              <h6 className="mb-0">{project.projectName}</h6>
+              {getStatusTag(project.status)}
+            </div>
+            <p className="text-muted small mb-1"><strong>Duration:</strong> {project.duration}</p>
+            <p className="text-muted small mb-1"><strong>Organization:</strong> {organizations?.find((o) => o.id == project.organizationId)?.organizationName || "N/A"}</p>
+            <p className="text-muted small mb-1"><strong>Tech:</strong> {project.techUsed.split(",").slice(0, 3).join(", ")}{project.techUsed.split(",").length > 3 ? "..." : ""}</p>
+            <p className="text-muted small mb-0"><strong>About:</strong> {project.about.length > 100 ? project.about.slice(0, 100) + "..." : project.about}</p>
+            <div className="mt-2">
+              <motion.div whileHover={{ scale: 1.2 }} style={{ display: "inline-block" }}>
+                <EditOutlined
+                  style={{ cursor: "pointer", fontSize: "16px" }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    navigate(`/projects/edit/${project.key}`, { state: project });
+                  }}
+                />
+              </motion.div>
+            </div>
+          </CCardBody>
+        </CCard>
+      ))}
+    </div>
    
   </>
             
