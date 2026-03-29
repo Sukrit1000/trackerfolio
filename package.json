@@ -2,7 +2,7 @@
   "name": "@coreui/coreui-free-react-admin-template",
   "version": "5.5.0",
   "description": "CoreUI Free React Admin Template",
-  "homepage": "https://github.com/Sukrit1000/trackerfolio.git",
+  "homepage": "/",
   "bugs": {
     "url": "https://github.com/coreui/coreui-free-react-admin-template/issues"
   },
@@ -17,8 +17,8 @@
     "lint": "eslint",
     "serve": "vite preview",
     "start": "vite",
-    "predeploy": "npm run build",
-    "deploy": "main -d dist"
+    "predeploy": "npm run build"
+    
   },
   "dependencies": {
     "@coreui/chartjs": "^4.1.0",
