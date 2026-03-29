@@ -27,10 +27,10 @@ const LandingPage = () => {
     }, [navigate])
 
   return (
-    <CContainer className="py-5">
+    <CContainer fluid className="py-5 px-3 px-md-5">
       {/* Hero Section */}
-      <motion.div initial="hidden" animate="visible" variants={fadeInUp} className="text-center mb-5">
-        <h1 className="display-4 fw-bold">
+      <motion.div initial="hidden" animate="visible" variants={fadeInUp} className="text-center mb-5" style={{ maxWidth: 900, margin: '0 auto' }}>
+        <h1 className="fw-bold" style={{ fontSize: 'clamp(1.8rem, 4vw, 3.5rem)' }}>
           Welcome to <span style={{ color: '#4facfe' }}>Workfolio</span>
         </h1>
         <p className="lead text-muted">
@@ -81,7 +81,7 @@ const LandingPage = () => {
 
       {/* Add Projects Section */}
       <CRow className="align-items-center mb-5">
-        <CCol md={6}>
+        <CCol md={6} className="mb-3 mb-md-0">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={slideInLeft}>
             <h2>Add Projects</h2>
             <p className="text-muted">
@@ -92,7 +92,7 @@ const LandingPage = () => {
             </CButton>
           </motion.div>
         </CCol>
-        <CCol md={6}>
+        <CCol md={6} className="mt-3 mt-md-0">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={slideInRight}>
             {/* Replace with actual illustration */}
             <motion.img
@@ -110,7 +110,7 @@ const LandingPage = () => {
 
       {/* Track Growth Section */}
       <CRow className="align-items-center mb-5 flex-md-row-reverse">
-        <CCol md={6}>
+        <CCol md={6} className="mb-3 mb-md-0">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={slideInRight}>
             <h2>Track Your Growth</h2>
             <p className="text-muted">
@@ -119,7 +119,7 @@ const LandingPage = () => {
             <CButton color="primary" onClick={()=>navigate("/login")}>View Insights</CButton>
           </motion.div>
         </CCol>
-        <CCol md={6}>
+        <CCol md={6} className="mt-3 mt-md-0">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={slideInLeft}>
             {/* Replace with actual illustration */}
             <motion.img

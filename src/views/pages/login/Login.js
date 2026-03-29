@@ -80,13 +80,13 @@ const Login = () => {
   }
 
   return (
-    <CContainer fluid className="min-vh-100 d-flex justify-content-center align-items-center" style={{ background: '#f8f9fa' }}>
-      <CCol md={10} lg={9}>
+    <CContainer fluid className="min-vh-100 d-flex justify-content-center align-items-center px-3" style={{ background: '#f8f9fa' }}>
+      <CCol xs={12} md={10} lg={9} className="px-0">
         <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
-          <CCardGroup className="shadow-lg rounded-4 overflow-hidden">
+          <CCardGroup className="shadow-lg rounded-4 overflow-hidden flex-column flex-md-row">
 
             {/* LEFT: LOGIN FORM */}
-            <CCard className="p-5 border-0">
+            <CCard className="p-4 p-md-5 border-0 flex-fill">
               <CCardBody>
                 <motion.div variants={fadeInUp} initial="hidden" animate="visible">
                   <h2 className="fw-bold text-primary mb-1">Welcome Back</h2>
@@ -135,10 +135,10 @@ const Login = () => {
 
             {/* RIGHT: SIGNUP CTA */}
             <CCard
-              className="text-white d-flex align-items-center justify-content-center border-0"
-              style={{ width: '45%', background: 'linear-gradient(135deg, #4f46e5, #6366f1)' }}
+              className="text-white d-flex align-items-center justify-content-center border-0 w-100"
+              style={{ background: 'linear-gradient(135deg, #4f46e5, #6366f1)' }}
             >
-              <CCardBody className="text-center px-4">
+              <CCardBody className="text-center px-4 py-5">
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
                   <h2 className="fw-bold mb-3">Create Account</h2>
                   <p style={{ opacity: 0.85 }}>

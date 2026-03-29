@@ -77,11 +77,11 @@ const Register = () => {
   }
 
   return (
-    <CContainer fluid className="min-vh-100 d-flex justify-content-center align-items-center" style={{ background: '#f8f9fa' }}>
-      <CCol md={10} lg={8} xl={6}>
+    <CContainer fluid className="min-vh-100 d-flex justify-content-center align-items-center px-3" style={{ background: '#f8f9fa' }}>
+      <CCol xs={12} sm={11} md={10} lg={8} xl={6} className="px-0">
         <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
-          <CCard className="shadow-lg border-0 rounded-4">
-            <CCardBody className="p-5">
+          <CCard className="shadow-lg border-0 rounded-4 w-100">
+            <CCardBody className="p-4 p-md-5">
               
               {/* Welcome / Branding */}
               <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
