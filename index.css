@@ -1,10 +1,5 @@
 /* Table container */
-html, body {
-  margin: 0;
-  padding: 0;
-  background-color: #1d222b; /* your dark theme */
-  height: 100%;
-}
+
 
 
 .dark-table .ant-table {
