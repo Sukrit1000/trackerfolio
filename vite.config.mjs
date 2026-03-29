@@ -5,7 +5,7 @@ import autoprefixer from 'autoprefixer'
 
 export default defineConfig(() => {
   return {
-    base: '/trackerfolio/',
+    base: '/',
     build: {
       outDir: 'dist',
     },
