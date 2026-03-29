@@ -7,7 +7,7 @@ export default defineConfig(() => {
   return {
     base: '/trackerfolio/',
     build: {
-      outDir: 'build',
+      outDir: 'dist',
     },
     css: {
       postcss: {
