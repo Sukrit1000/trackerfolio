@@ -119,13 +119,15 @@ const Login = () => {
                     </CInputGroup>
 
                     <CRow className="align-items-center">
-                      <CCol xs={6}>
+                      <CCol xs={12} sm={6} className="mb-2 mb-sm-0">
                         <CButton type="submit" color="primary" className="px-4 w-100 fw-bold">
                           {loading ? 'Logging in...' : 'Login'}
                         </CButton>
                       </CCol>
-                      <CCol xs={6} className="text-end">
-                        <CButton color="link" className="px-0">Forgot password?</CButton>
+                      <CCol xs={12} sm={6} className="text-sm-end">
+                        <CButton color="link" className="px-0 w-100 w-sm-auto text-start text-sm-end" style={{ whiteSpace: 'normal' }}>
+                          Forgot password?
+                        </CButton>
                       </CCol>
                     </CRow>
                   </CForm>
