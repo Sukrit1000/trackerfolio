@@ -7,6 +7,7 @@ import {
   CCol,
   CRow,
   CButton,
+  CContainer
 } from "@coreui/react";
 import { Collapse, Tag, Steps } from "antd";
 import "../../../index.css";
@@ -101,17 +102,11 @@ const OrganizationsList = () => {
   return (
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.5 }}>
 
-    <CRow>
-      <CCol xs={12}>
-        {/* Header */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: "16px",
-          }}
-        >
+    <CContainer fluid className="px-3 px-md-4 py-3">
+      <CRow>
+        <CCol xs={12}>
+          {/* Header */}
+          <div className="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center mb-3">
           <h4 style={{ margin: 0 }}>My Organizations</h4>
 
           <CButton color="primary" onClick={handleAddProject}>
@@ -228,8 +223,7 @@ const OrganizationsList = () => {
         </CCard>
       </CCol>
     </CRow>
-    </motion.div>
-  );
+    </CContainer>    </motion.div>  );
 };
 
 export default OrganizationsList;

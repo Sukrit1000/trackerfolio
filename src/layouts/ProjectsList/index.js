@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import  { useNavigate } from 'react-router-dom'
 import {
- 
+ CContainer,
   CCard,
   CCardBody,
   CCardHeader,
@@ -221,22 +221,15 @@ const handleAddProject = () => {
   return (
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.5 }}>
 
-    <CRow>
-      <CCol xs={12} >
-        <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        marginBottom: "12px",
-      }}
-    >
-      <h4 style={{ margin: 0 }}>My Projects</h4>
-
-      <CButton color="primary" onClick={handleAddProject}>
-        + Add Project
-      </CButton>
-    </div>
+    <CContainer fluid className="px-3 px-md-4 py-3">
+      <CRow>
+        <CCol xs={12}>
+          <div className="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center mb-3">
+            <h4 style={{ margin: 0 }}>My Projects</h4>
+            <CButton className="mt-2 mt-sm-0" color="primary" onClick={handleAddProject}>
+              + Add Project
+            </CButton>
+          </div>
         {/* <DocsComponents href="components/breadcrumb/" /> */}
         <CCard className="mb-4">
           <CCardHeader>
@@ -280,7 +273,8 @@ const handleAddProject = () => {
           </CCardBody>
         </CCard>
       </CCol>
-    </CRow>
+      </CRow>
+    </CContainer>
     </motion.div>
   )
 }
