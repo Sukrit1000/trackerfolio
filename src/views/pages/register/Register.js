@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import {
   CButton,
   CCard,
@@ -10,188 +10,234 @@ import {
   CInputGroup,
   CInputGroupText,
   CRow,
-} from '@coreui/react'
-import toast from 'react-hot-toast'
-import CIcon from '@coreui/icons-react'
-import { cilLockLocked, cilUser } from '@coreui/icons'
-import { createUser } from '../../../assets/globalAPI/GlobalApi'
-import { motion } from 'framer-motion'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-}
-
-const slideInLeft = {
-  hidden: { opacity: 0, x: -50 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.6 } },
-}
-
-const slideInRight = {
-  hidden: { opacity: 0, x: 50 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.6 } },
-}
+} from "@coreui/react";
+import toast from "react-hot-toast";
+import CIcon from "@coreui/icons-react";
+import { cilLockLocked, cilUser, cilBuilding } from "@coreui/icons";
+import { createUser } from "../../../assets/globalAPI/GlobalApi";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
+
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    username: '',
-    password: '',
-    repeatPassword: '',
-  })
+    accountType: "INDIVIDUAL",
+    firstName: "",
+    lastName: "",
+    email: "",
+    username: "",
+    password: "",
+    repeatPassword: "",
+    organizationName: "",
+  });
+  const navigate = useNavigate();
 
   const handleChange = (e, field) => {
-    const { value } = e.target
-    setFormData((prev) => ({ ...prev, [field]: value }))
-  }
+    setFormData((prev) => ({ ...prev, [field]: e.target.value }));
+  };
 
   const handleCreateUser = async (e) => {
-    e.preventDefault()
-    setLoading(true)
+    e.preventDefault();
+    setLoading(true);
 
     if (formData.password !== formData.repeatPassword) {
-      toast.error('Passwords do not match')
-      setLoading(false)
-      return
+      toast.error("Passwords do not match");
+      setLoading(false);
+      return;
     }
 
     try {
-      const payload = { ...formData }
-      const response = await createUser(payload)
-      const res = response.data
+      const payload = { ...formData };
+      const res = (await createUser(payload)).data;
 
       if (res.status) {
-        toast.success('Account created successfully 🚀')
+        toast.success("Account created 🚀");
+        setTimeout(() => {
+          navigate("/login");
+        }
+        , 1500);
+        
       } else {
-        toast.error(res.message || 'Something went wrong')
+        toast.error(res.message);
       }
-    } catch (error) {
-      toast.error(error.response?.data?.message || 'Server error')
-      console.error(error)
+    } catch (err) {
+      toast.error(err.response?.data?.message || "Server error");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
-    <CContainer fluid className="min-vh-100 d-flex justify-content-center align-items-center px-3" style={{ background: '#f8f9fa' }}>
-      <CCol xs={12} sm={11} md={10} lg={8} xl={6} className="px-0">
-        <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
-          <CCard className="shadow-lg border-0 rounded-4 w-100">
+    <CContainer
+      fluid
+      className="min-vh-100 d-flex justify-content-center align-items-center px-3"
+      style={{ background: "#f4f6f9" }}
+    >
+      <CCol xs={12} sm={11} md={10} lg={8} xl={6}>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+          <CCard className="shadow-lg border-0 rounded-4">
             <CCardBody className="p-4 p-md-5">
-              
-              {/* Welcome / Branding */}
-              <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-                <h2 className="fw-bold text-primary mb-2">Welcome to Workfolio</h2>
-                <p className="text-muted mb-4">
-                  Create your portfolio, track projects, and monitor your growth efficiently.
+
+              {/* HEADER */}
+              <div className="mb-4">
+                <h3 className="fw-bold text-primary mb-1">
+                  Create your account
+                </h3>
+                <p className="text-muted">
+                  Start tracking your growth like a pro 🚀
                 </p>
-              </motion.div>
+              </div>
 
-              {/* Form */}
-              <motion.div variants={fadeInUp} initial="hidden" animate="visible">
-                <CForm onSubmit={handleCreateUser}>
-                  <CRow>
-                    <CCol md={6}>
-                      <CInputGroup className="mb-3">
-                        <CInputGroupText>
-                          <CIcon icon={cilUser} />
-                        </CInputGroupText>
-                        <CFormInput
-                          placeholder="First Name"
-                          value={formData.firstName}
-                          onChange={(e) => handleChange(e, 'firstName')}
-                        />
-                      </CInputGroup>
-                    </CCol>
-                    <CCol md={6}>
-                      <CInputGroup className="mb-3">
-                        <CInputGroupText>
-                          <CIcon icon={cilUser} />
-                        </CInputGroupText>
-                        <CFormInput
-                          placeholder="Last Name"
-                          value={formData.lastName}
-                          onChange={(e) => handleChange(e, 'lastName')}
-                        />
-                      </CInputGroup>
-                    </CCol>
-                  </CRow>
+              {/* ACCOUNT TYPE */}
+              <div className="mb-4">
+                <label className="mb-2 fw-semibold">I am a:</label>
 
-                  <CRow>
-                    <CCol md={6}>
-                      <CInputGroup className="mb-3">
-                        <CInputGroupText>@</CInputGroupText>
-                        <CFormInput
-                          placeholder="Email"
-                          value={formData.email}
-                          onChange={(e) => handleChange(e, 'email')}
-                        />
-                      </CInputGroup>
-                    </CCol>
-                    <CCol md={6}>
-                      <CInputGroup className="mb-3">
-                        <CInputGroupText>
-                          <CIcon icon={cilUser} />
-                        </CInputGroupText>
-                        <CFormInput
-                          placeholder="Username"
-                          value={formData.username}
-                          onChange={(e) => handleChange(e, 'username')}
-                        />
-                      </CInputGroup>
-                    </CCol>
-                  </CRow>
+                <div className="d-flex gap-3 flex-wrap">
+                  <CButton
+                    color={
+                      formData.accountType === "INDIVIDUAL"
+                        ? "primary"
+                        : "light"
+                    }
+                    onClick={() =>
+                      setFormData((p) => ({
+                        ...p,
+                        accountType: "INDIVIDUAL",
+                      }))
+                    }
+                  >
+                    👤 Individual
+                  </CButton>
 
-                  <CRow>
-                    <CCol md={6}>
-                      <CInputGroup className="mb-4">
-                        <CInputGroupText>
-                          <CIcon icon={cilLockLocked} />
-                        </CInputGroupText>
-                        <CFormInput
-                          type="password"
-                          placeholder="Password"
-                          value={formData.password}
-                          onChange={(e) => handleChange(e, 'password')}
-                        />
-                      </CInputGroup>
-                    </CCol>
-                    <CCol md={6}>
-                      <CInputGroup className="mb-4">
-                        <CInputGroupText>
-                          <CIcon icon={cilLockLocked} />
-                        </CInputGroupText>
-                        <CFormInput
-                          type="password"
-                          placeholder="Repeat Password"
-                          value={formData.repeatPassword}
-                          onChange={(e) => handleChange(e, 'repeatPassword')}
-                        />
-                      </CInputGroup>
-                    </CCol>
-                  </CRow>
+                  <CButton
+                    color={
+                      formData.accountType === "ORGANIZATION"
+                        ? "primary"
+                        : "light"
+                    }
+                    onClick={() =>
+                      setFormData((p) => ({
+                        ...p,
+                        accountType: "ORGANIZATION",
+                      }))
+                    }
+                  >
+                    🏢 Organization
+                  </CButton>
+                </div>
+              </div>
 
-                  <div className="d-grid mb-4">
-                    <CButton type="submit" color="primary" size="lg" className="fw-bold">
-                      {loading ? 'Creating Account...' : 'Create Account'}
-                    </CButton>
-                  </div>
-                </CForm>
-              </motion.div>
+              {/* FORM */}
+              <CForm onSubmit={handleCreateUser}>
+                <CRow>
+                  <CCol md={6}>
+                    <CInputGroup className="mb-3">
+                      <CInputGroupText>
+                        <CIcon icon={cilUser} />
+                      </CInputGroupText>
+                      <CFormInput
+                        placeholder="First Name"
+                        value={formData.firstName}
+                        onChange={(e) => handleChange(e, "firstName")}
+                      />
+                    </CInputGroup>
+                  </CCol>
 
-              {/* Add Projects Section */}
-            
+                  <CCol md={6}>
+                    <CInputGroup className="mb-3">
+                      <CInputGroupText>
+                        <CIcon icon={cilUser} />
+                      </CInputGroupText>
+                      <CFormInput
+                        placeholder="Last Name"
+                        value={formData.lastName}
+                        onChange={(e) => handleChange(e, "lastName")}
+                      />
+                    </CInputGroup>
+                  </CCol>
+                </CRow>
 
+                <CInputGroup className="mb-3">
+                  <CInputGroupText>@</CInputGroupText>
+                  <CFormInput
+                    placeholder="Email"
+                    value={formData.email}
+                    onChange={(e) => handleChange(e, "email")}
+                  />
+                </CInputGroup>
+
+                <CInputGroup className="mb-3">
+                  <CInputGroupText>
+                    <CIcon icon={cilUser} />
+                  </CInputGroupText>
+                  <CFormInput
+                    placeholder="Username"
+                    value={formData.username}
+                    onChange={(e) => handleChange(e, "username")}
+                  />
+                </CInputGroup>
+
+                {/* ORG FIELD (conditional) */}
+                {formData.accountType === "ORGANIZATION" && (
+                  <CInputGroup className="mb-3">
+                    <CInputGroupText>
+                      <CIcon icon={cilBuilding} />
+                    </CInputGroupText>
+                    <CFormInput
+                      placeholder="Organization Name"
+                      value={formData.organizationName}
+                      onChange={(e) =>
+                        handleChange(e, "organizationName")
+                      }
+                    />
+                  </CInputGroup>
+                )}
+
+                <CRow>
+                  <CCol md={6}>
+                    <CInputGroup className="mb-3">
+                      <CInputGroupText>
+                        <CIcon icon={cilLockLocked} />
+                      </CInputGroupText>
+                      <CFormInput
+                        type="password"
+                        placeholder="Password"
+                        value={formData.password}
+                        onChange={(e) => handleChange(e, "password")}
+                      />
+                    </CInputGroup>
+                  </CCol>
+
+                  <CCol md={6}>
+                    <CInputGroup className="mb-3">
+                      <CInputGroupText>
+                        <CIcon icon={cilLockLocked} />
+                      </CInputGroupText>
+                      <CFormInput
+                        type="password"
+                        placeholder="Repeat Password"
+                        value={formData.repeatPassword}
+                        onChange={(e) =>
+                          handleChange(e, "repeatPassword")
+                        }
+                      />
+                    </CInputGroup>
+                  </CCol>
+                </CRow>
+
+                <div className="d-grid mt-3">
+                  <CButton type="submit" color="primary" size="lg">
+                    {loading ? "Creating..." : "Create Account"}
+                  </CButton>
+                </div>
+              </CForm>
             </CCardBody>
           </CCard>
         </motion.div>
       </CCol>
     </CContainer>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;
