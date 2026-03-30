@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 axios.defaults.baseURL = 'https://workfoliobackend-j5a9.onrender.com/api/app'; 
+// axios.defaults.baseURL = 'http://localhost:5000/api/app'; 
 
 
 export function createUser(data) {
@@ -29,6 +30,13 @@ export function getAllOrganizations() {
     axios.defaults.headers.common["Authorization"] = "Bearer " + token;
     axios.defaults.headers.post["Content-Type"] = "application/json";
     return axios.get(`/organizations/getOrganizations`)
+}
+
+export function getAllGrowthCounts(projects, tech) {
+    let token = localStorage.getItem("userToken");
+    axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+    axios.defaults.headers.post["Content-Type"] = "application/json";
+    return axios.get(`/dashboard/growth?projects=${projects}&tech=${tech}`)
 }
 
 export function fetchDashboardData() {

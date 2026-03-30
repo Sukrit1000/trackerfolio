@@ -19,6 +19,7 @@ import CreateProject from './layouts/ProjectsList/CreateProject'
 import OrganizationsList from './layouts/OrganizationsList'
 import CreateOrganization from './layouts/OrganizationsList/CreateOrganization'
 import EditOrganization from './layouts/OrganizationsList/EditOrganization'
+import GrowthInsights from './layouts/GrowthInsights'
 // import ProjectDetails from './layouts/ProjectsList/ProjectDetails'
 
 // Dashboard
@@ -114,6 +115,8 @@ const routes = [
     { path: '/organizations/edit/:organizationKey', name: 'Edit Organization', element: EditOrganization },
     // { path: '/oragnizations/createorganization', name: 'Create Organization', element: CreateProject },
     // { path: '/oragnizations/:organizationKey', name: 'Organization Details', element: projectDetails },
+
+    { path: '/growth/growthinsights', name: 'Growth Insights', element: GrowthInsights },
 
   { path: '/base', name: 'Base', element: Cards, exact: true },
   { path: '/base/accordion', name: 'Accordion', element: Accordion },

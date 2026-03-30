@@ -126,6 +126,17 @@ const _nav = [
     icon: <CIcon icon={cilBriefcase} customClassName="nav-icon" />,
   },
 
+   {
+    component: CNavTitle,
+    name: 'Growth',
+  },
+  
+  {
+    component: CNavItem,
+    name: 'Growth Insights',
+    to: '/growth/growthinsights',
+    icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
+  },
 
 
   // {
