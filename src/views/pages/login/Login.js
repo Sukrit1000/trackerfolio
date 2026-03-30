@@ -18,6 +18,7 @@ import { cilLockLocked, cilUser } from '@coreui/icons'
 import toast from 'react-hot-toast'
 import { loginUser } from '../../../assets/globalAPI/GlobalApi'
 import { motion } from 'framer-motion'
+import { useAuth } from '../../../Context'
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -38,6 +39,7 @@ const Login = () => {
   const [loading, setLoading] = React.useState(false)
   const navigate = useNavigate()
   const [formData, setFormData] = React.useState({ email: '', password: '' })
+  const { login } = useAuth()
 
   useEffect(() => {
     const token = localStorage.getItem('userToken')
@@ -67,6 +69,7 @@ const Login = () => {
         localStorage.setItem('userToken', res.token)
         localStorage.setItem('userdetails', JSON.stringify(res.user))
         toast.success('Login Successful 🚀')
+        login(res.user, res.token)
         navigate('/dashboard')
       } else {
         toast.error(res.message || 'Something went wrong')
